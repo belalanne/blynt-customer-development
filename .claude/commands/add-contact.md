@@ -109,18 +109,46 @@ Duplicate Handling:
 - 🔄 Optional: Offer to update existing contact with new info (email, role change)
 ```
 
-### 4. Research New Contacts on Web
-```
-- Use WebSearch to find:
-  - "[Company] leadership team"
-  - "[Company] CEO CTO"
-  - "[Company] LinkedIn employees"
-- Visit company website /about, /team pages
-- Check LinkedIn company page for recent hires in target roles
-- Gather: Name, Role, LinkedIn URL (CRITICAL for duplicate detection)
+### 4. Research New Contacts
 
-IMPORTANT: LinkedIn URL is mandatory for reliable duplicate detection
-- Always try to get LinkedIn URL for each contact
+**PRIORITY: Use Exa LinkedIn Search (If Available)**
+
+1. **Try Exa LinkedIn Search First:**
+   ```
+   Tool: mcp__exa__linkedin_search
+
+   Search queries to try:
+   - "[Company Name] CEO"
+   - "[Company Name] CTO"
+   - "[Company Name] VP Engineering"
+   - "[Company Name] Head of Product"
+
+   Benefits:
+   - ✅ Direct LinkedIn data access
+   - ✅ Automatically includes LinkedIn URLs (for duplicate detection)
+   - ✅ More accurate role/title information
+   - ✅ Recent employment data
+   ```
+
+2. **If Exa succeeds:**
+   - Extract: Name, Role, LinkedIn URL, Company
+   - LinkedIn URL is automatically included (perfect for duplicate detection!)
+   - Proceed to duplicate checking (Step 3)
+
+3. **Fallback to Traditional Methods (if Exa unavailable):**
+   ```
+   - Use WebSearch to find:
+     - "[Company] leadership team"
+     - "[Company] CEO CTO"
+     - "[Company] LinkedIn employees"
+   - Visit company website /about, /team pages
+   - Check LinkedIn company page for recent hires in target roles
+   - Gather: Name, Role, LinkedIn URL (CRITICAL for duplicate detection)
+   ```
+
+**IMPORTANT: LinkedIn URL is mandatory for reliable duplicate detection**
+- Exa automatically provides LinkedIn URLs
+- If using fallback methods, always try to get LinkedIn URL
 - If not available, use alternative search methods
 ```
 
