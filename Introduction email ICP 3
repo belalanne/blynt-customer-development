@@ -1,0 +1,52 @@
+# ICP #3: Real‑time voice agents / AI assistants (Conversational AI)
+# English Version
+
+## Message 1
+
+Subject: Quick question on turn-taking
+
+Hey [First Name],
+
+I'm David. I’ve spent over 10 years working on speech understanding, including launching Sonos Voice Control, bringing real-time transcription and voice activity detection to millions of users.
+
+I recently co-founded Blynt AI, and I am in discovery mode, that's why I am reaching out.
+
+As I speak with teams building voice agents (Sandra AI, Vocca AI, Doctolib, Marshmallow), I keep hearing the same pain I faced myself: 👉 handling **turn-taking** without lag or interruptions.
+
+Not a pitch, I’d love to hear how you’re approaching it. We’re comparing insights across teams right now.
+
+Would you be open to a quick 20-minute chat?
+
+Best,
+David
+
+## Message 2
+
+Subject: Bench notes on Flux/Vogent
+
+Hey [First Name],
+
+I’ve been helping a few teams recently, one in healthcare, another building a kids voice agent, evaluate their speech AI stack.
+
+We’ve benchmarked several approaches, including Flux (Deepgram), Vogent. Have you heard about this new [evaluataton framework](https://ericsunkuan.github.io/full-duplex-bench-v2-demo/) for turn-taking? 
+
+Want the one‑slide summary? I can walk you through it in 15 min.
+
+Best,
+David
+
+## Message 3
+
+Subject: Last note — early access to Blynt AI Studio
+
+Hey [First Name],
+
+We’re opening our Blynt AI Studio: upload a few audios and get a side‑by‑side of your stack vs. alternative models on:
+- latency/barge‑in
+- overlap handling/double‑talk
+- domain WER stability
+
+If you want early access, I can set you up this week. If not, all good, happy to send the benchmark one‑pager instead.
+
+Best,
+David

@@ -1,0 +1,53 @@
+# ICP #1: White-Label Runtime Solutions (End-user with Speech-Intensive Workflows)
+# English Version
+
+## Message 1
+
+Subject: Quick question on client-facing conversation
+
+Hey [First Name],
+
+I'm Benjamin. I recently co-founded Blynt AI. My cofounders over 10 years working on speech understanding, including launching Sonos Voice Control, bringing real-time transcription and speech understanding to millions of users.
+
+We just launched with a travel and real-estate companies: an app that captures call audio, summarizes the meeting, extracts structured data, triggers API calls into their system, and drafts the follow-up email.
+
+Human conversation is at the heart of your business. Teams we work with want their reps focused on real conversations, not scrambling to capture notes or fill systems after the call.
+
+We’re early and looking for design partners to get feedback. Happy to chat for 20 minutes next week.
+
+Best,
+Benjamin
+
+## Message 2
+
+Subject: Outcomes from a recent launch + domain jargon adaptation
+
+Hey [First Name],
+
+Curious what happens after launch?
+From that launch:
+- Reps focused fully on the conversation; fewer missed details.
+- Auto-summary and key fields (e.g., dates, preferences, constraints) ready seconds after the call.
+- Follow-up email + link to the proposal generated automatically.
+- API calls created the draft plan in their system.
+
+We adapt models to industry jargon (travel: hotels, flights, activities) and can tune to yours (real estate, construction, etc.). Want a 20‑minute walkthrough?
+
+Best,
+Benjamin
+
+## Message 3
+
+Subject: Last note and early access to Blynt AI App
+
+Hey [First Name],
+
+Offering a small pilot:
+- Desktop app (masOS) captures meeting audio, summarizes, extracts fields you define
+- Pushes results into your CRM/ops tools; drafts follow-up emails.
+- We’ll tune entity schemas to your domain terms.
+
+If you want early access, I can set you up this week. If not, happy to just share the one‑pager.
+
+Best,
+Benjamin
