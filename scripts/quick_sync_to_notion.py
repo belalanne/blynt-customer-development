@@ -33,7 +33,7 @@ DATABASE_ID = os.environ.get("NOTION_DATABASE_ID", "2861bdff7e998000a14edb0bf56a
 NOTION_API_KEY = os.environ.get("NOTION_API_KEY", "")
 COMPANY = sys.argv[1] if len(sys.argv) > 1 else "livekit.io"
 
-# Company data mapping
+# Company data mapping (extracted from deep dive analyses)
 COMPANY_DATA = {
     "livekit.io": {
         "Company_Name": "LiveKit",
@@ -42,10 +42,14 @@ COMPANY_DATA = {
         "Status / Engagement": "Ice Box",
         "Vertical": "Infrastructure",
         "ICP": "3",
-        "Product description": "Open-source WebRTC voice-video infrastructure",
-        "ASR provider": ["Deepgram", "Assembly AI", "Speechmatics"],
-        "Nbr of AI/ML/Speech engineer": 15,
+        "Product description": "Open-source WebRTC infrastructure for real-time voice-video-AI",
+        "ASR provider": ["Deepgram", "AssemblyAI", "Speechmatics", "Azure Speech", "Google STT"],
+        "Nbr of AI/ML/Speech engineer": 18,
         "Main Office Country": "United States",
+        "Employee Count": 37,
+        "Funding Raised": "$83M",
+        "Funding Stage": "Series B",
+        "Valuation": "$345M",
     },
     "100ms.live": {
         "Company_Name": "100ms",
@@ -54,10 +58,14 @@ COMPANY_DATA = {
         "Status / Engagement": "Ice Box",
         "Vertical": "Infrastructure",
         "ICP": "3",
-        "Product description": "Live video API for developers",
-        "ASR provider": ["External service (HIPAA)"],
-        "Nbr of AI/ML/Speech engineer": 10,
+        "Product description": "Live video API infrastructure for developers",
+        "ASR provider": ["None"],  # No AI/speech partnerships identified
+        "Nbr of AI/ML/Speech engineer": 5,
         "Main Office Country": "United States",
+        "Employee Count": 31,
+        "Funding Raised": "$24.5M",
+        "Funding Stage": "Series A",
+        "Valuation": "Not disclosed",
     },
     "daily.co": {
         "Company_Name": "Daily",
@@ -66,10 +74,14 @@ COMPANY_DATA = {
         "Status / Engagement": "Ice Box",
         "Vertical": "Infrastructure",
         "ICP": "3",
-        "Product description": "WebRTC APIs and Pipecat framework",
-        "ASR provider": ["Deepgram", "AssemblyAI", "OpenAI Whisper"],
-        "Nbr of AI/ML/Speech engineer": 20,
+        "Product description": "WebRTC platform with Pipecat voice AI framework",
+        "ASR provider": ["Deepgram", "AssemblyAI", "OpenAI Whisper", "Google STT", "Azure Speech"],
+        "Nbr of AI/ML/Speech engineer": 22,
         "Main Office Country": "United States",
+        "Employee Count": 116,
+        "Funding Raised": "$62.2M",
+        "Funding Stage": "Series B",
+        "Valuation": "Not disclosed",
     },
 }
 
