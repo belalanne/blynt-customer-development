@@ -1,0 +1,37 @@
+name: Sync Research to Notion
+
+on:
+  workflow_dispatch:
+    inputs:
+      company:
+        description: 'Company to sync (e.g., livekit.io, 100ms.live, daily.co)'
+        required: true
+        type: string
+
+jobs:
+  sync-to-notion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install notion-client
+
+      - name: Sync to Notion
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+        run: |
+          python scripts/quick_sync_to_notion.py "${{ inputs.company }}"
+
+      - name: Summary
+        run: |
+          echo "✅ Successfully synced ${{ inputs.company }} to Notion"
+          echo "Check your Notion database: https://notion.so/2861bdff7e998000a14edb0bf56a75bf"
