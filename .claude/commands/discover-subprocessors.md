@@ -1,150 +1,319 @@
 ---
-description: Extract and compile a list of AI/speech subprocessors and vendors used by a target company
+description: Discover real-time voice infrastructure & speech stack (optimized)
 ---
 
-You are a sales prospection agent specialized in discovering a company's subprocessors and vendor ecosystem, with a **specific focus on conversation intelligence, transcription, and speech technologies**.
+You are a sales prospection agent specialized in discovering **real-time voice infrastructure and speech technology stack**.
 
 **Target Company:** {{arg1}}
 
-## Primary Focus Areas
+**Focus:** Identify transport protocols, real-time frameworks, agentic platforms, and speech stack (ASR, LLM, TTS) used for real-time voice products.
 
-Focus ONLY on subprocessors related to:
-- **Speech-to-Text / ASR providers** (Deepgram, Gladia, Assembly AI, Microsoft Azure Speech, Google Speech-to-Text, Rev.ai, Whisper, etc.)
-- **LLM providers** (OpenAI, Anthropic, Google Gemini, Cohere, Azure OpenAI, etc.)
-- **Meeting recorders** (Recall.ai, Tactiq, Fireflies API, etc.)
-- **Audio capture / recording infrastructure**
-- **Transcription services**
-- **Summarization engines**
-- **NLP/AI processing for conversations**
+---
 
-**Ignore** general infrastructure (hosting, CDN), analytics, marketing tools, payment processors, chat widgets, etc.
+## OPTIMIZATION: Check for Cached Enrichment Data
 
-## Your Task
+**IMPORTANT:** Before starting research, check if enrichment data already exists from `/enrich-company`:
 
-When given a target company in the conversation intelligence / meeting transcription space:
+### If Called After `/enrich-company`:
+✅ **Skip redundant searches:**
+- Don't re-fetch company website
+- Don't re-search company basics (funding, team, metrics)
+- Don't re-fetch blog or careers pages
+- Don't re-search for general company information
 
-1. **Check Privacy & Security Documentation**
-   - Look for: Privacy Policy, Cookie Policy, Data Processing Addendum (DPA), Subprocessor lists
-   - Search specifically for: speech-to-text providers, LLM APIs, transcription vendors
-   - Check dedicated subprocessor pages (common in GDPR-compliant companies)
-   - Look for security/trust pages (trust.company.com, security.company.com)
+✅ **Use cached data:**
+- Tech stack searches already done in enrichment
+- Blog posts already fetched
+- Job postings already searched
+- Privacy/security pages already attempted
 
-2. **Analyze Technical Documentation**
-   - Review API documentation for mentions of AI/ML services
-   - Check developer docs for model providers or speech APIs
-   - Look for job postings mentioning AI/ML technologies (engineer roles)
-   - Review technical blog posts about their AI stack
+✅ **Focus ONLY on:**
+- Deep analysis of tech stack findings from enrichment
+- Categorizing vendors by type (ASR, LLM, etc.)
+- Interpreting non-disclosure patterns
+- Competitive intelligence on tech choices
 
-3. **Search for Technology Partnerships**
-   - Look for partnerships with ASR providers
-   - Check for LLM provider partnerships or announcements
-   - Search press releases mentioning AI technology
-   - Review case studies mentioning specific AI vendors
+### If Called Standalone (No Prior Enrichment):
+⚠️ **Perform full research:**
+- Execute all searches below
+- Fetch all documentation
+- Complete comprehensive analysis
 
-4. **Categorize Core AI/Speech Vendors**
-   Group subprocessors by category:
-   - **Speech-to-Text / ASR** (Deepgram, Gladia, Assembly AI, etc.)
-   - **LLM / AI Models** (OpenAI, Anthropic, Cohere, etc.)
-   - **Meeting Recording Infrastructure** (Recall.ai, etc.)
-   - **Audio Processing** (Noise suppression, enhancement, etc.)
-   - **NLP Services** (Entity extraction, sentiment analysis, etc.)
+**Detection:** Look for phrases like:
+- "Based on the enrichment above..."
+- "From the previous research..."
+- "Already fetched in enrichment..."
+- Recent tool results showing company data
 
-5. **Provide Structured Output**
-   - List each subprocessor with purpose/function
-   - **CRITICAL: Include source URL for each finding** - this is very important for verification
-   - Note confidence level (confirmed vs. inferred)
-   - Cite specific URLs where key information was found
+---
+
+## Primary Discovery Priorities
+
+### Priority 1: Real-Time Infrastructure
+**Transport Protocol:**
+- WebRTC
+- WebSockets
+- SIP/PSTN
+
+**Real-Time Framework:**
+- LiveKit
+- Pipecat
+- FastRTC
+- Daily
+- Agora
+- Twilio (real-time voice)
+
+**Agentic Framework:**
+- Vapi
+- LiveKit Agents
+- Pipecat Flow
+- Retell
+- Vocode
+
+### Priority 2: Speech Stack
+**ASR Providers:**
+- Deepgram
+- Gladia
+- Assembly AI
+- Azure Speech
+- Google Speech
+- Whisper
+- Rev.ai
+
+**LLM Providers:**
+- OpenAI
+- Anthropic
+- Google Gemini
+- Cohere
+- Azure OpenAI
+- Mistral
+
+**TTS Providers:**
+- ElevenLabs
+- Play.ht
+- Deepgram Aura
+- Azure TTS
+- Google TTS
+- OpenAI TTS
+
+### Priority 3: Supporting Infrastructure
+- **Telephony**: Twilio Voice, Vonage, Bandwidth, SignalWire
+- **Meeting Recording**: Recall.ai, Fireflies API, Tactiq
+- **Audio Processing**: Krisp, Dolby.io, noise suppression
+
+**Ignore:** Hosting (AWS, GCP), CDN, analytics, marketing tools, payment processors, databases
+
+---
+
+## Research Workflow (If Not Already Done)
+
+### 1. Privacy & Security Documentation
+```bash
+# Only if not already fetched in enrichment
+WebFetch: company.com/privacy
+WebFetch: company.com/security
+WebFetch: company.com/subprocessors
+WebFetch: company.com/gdpr
+WebFetch: company.com/dpa
+```
+
+### 2. Technical Documentation
+```bash
+# Only if not already fetched
+WebFetch: company.com/api
+WebFetch: company.com/docs
+WebFetch: company.com/developers
+WebFetch: company.com/sdk
+WebFetch: company.com/blog (technical posts about architecture)
+```
+
+### 3. Real-Time Infrastructure Searches
+```bash
+# Search for transport protocols and frameworks
+Exa: "Company WebRTC OR WebSockets OR real-time voice"
+WebSearch: "Company LiveKit OR Pipecat OR Daily OR Agora"
+WebSearch: "Company Vapi OR Retell OR Vocode OR agentic framework"
+WebSearch: "Company real-time transcription infrastructure"
+```
+
+### 4. Speech Stack Searches
+```bash
+# Only if not already searched in enrichment
+Exa: "Company ASR provider speech-to-text LLM TTS stack"
+WebSearch: "Company Deepgram OR Assembly AI OR Gladia OR Azure Speech"
+WebSearch: "Company OpenAI OR Anthropic OR Google Gemini"
+WebSearch: "Company ElevenLabs OR Play.ht OR TTS provider"
+```
+
+### 5. Job Postings
+```bash
+# Only if not already searched
+Exa: "Company jobs WebRTC engineer voice AI engineer ML engineer"
+WebSearch: "Company hiring real-time voice LiveKit Pipecat careers"
+WebSearch: "Company voice engineer job posting"
+```
+
+### 6. GitHub & Open Source
+```bash
+# Search for public repos and integrations
+WebSearch: "Company github WebRTC OR LiveKit OR Pipecat"
+Exa: "Company SDK OR API OR github repository"
+```
+
+### 7. Partnerships & Technical Announcements
+```bash
+WebSearch: "Company partnership Deepgram OR Gladia OR LiveKit OR Vapi"
+Exa: "Company technology stack announcement integration"
+```
+
+---
 
 ## Output Format
 
 ```
-# AI/Speech Technology Stack for [COMPANY NAME]
+# Real-Time Voice Infrastructure & Speech Stack for [COMPANY]
 
 ## Summary
-- Total AI/speech subprocessors found: X
-- ASR provider(s): [list]
-- LLM provider(s): [list]
-- Primary sources: [list key sources]
-- Last updated: [date from source if available]
+- **ICP Classification:** [1/2/3/4 or N/A] - [ICP description]
+- **Product Category:** [Voice agents / Meeting AI / Dictation / Custom]
+- **Real-time capability:** [Yes/No]
+- **Total components found:** X
+- **Primary sources:** [Key URLs]
+- **Last updated:** [Date]
 
-## Core AI/Speech Technologies
+## Real-Time Infrastructure
+
+### Transport Protocol
+| Protocol | Evidence | Source | Source URL | Confidence |
+|----------|----------|--------|------------|------------|
+| [WebRTC / WebSockets / SIP / Unknown] | [Job posting / API docs / Blog] | [Source type] | [URL] | [Confirmed / Inferred / Unknown] |
+
+### Real-Time Framework
+| Framework | Purpose | Source | Source URL | Confidence |
+|-----------|---------|--------|------------|------------|
+| [LiveKit / Pipecat / Daily / Not Disclosed] | [Real-time voice infra] | [Job posting / Blog] | [URL or N/A] | [Confirmed / Inferred / Unknown] |
+
+### Agentic Framework
+| Framework | Purpose | Source | Source URL | Confidence |
+|-----------|---------|--------|------------|------------|
+| [Vapi / LiveKit Agents / Retell / Not Disclosed] | [Voice agent orchestration] | [Source] | [URL] | [Confirmed / Inferred] |
+
+## Speech Stack
 
 ### Speech-to-Text / ASR
 | Vendor | Purpose | Source | Source URL | Confidence |
 |--------|---------|--------|------------|------------|
-| Deepgram | Real-time transcription | Privacy Policy | https://company.com/privacy | Confirmed |
-| Gladia | Meeting transcription | API docs | https://company.com/api/docs | Inferred |
+| [Deepgram / Gladia / Not Disclosed] | [Real-time transcription] | [Privacy Policy / Job posting] | [URL or N/A] | [Confirmed / Inferred / Unknown] |
 
 ### LLM / AI Models
 | Vendor | Purpose | Source | Source URL | Confidence |
 |--------|---------|--------|------------|------------|
-| OpenAI | Summarization & insights | Subprocessor list | https://company.com/subprocessors | Confirmed |
-| Anthropic | Content generation | Job posting | https://company.com/careers/ml-engineer | Inferred |
+| [OpenAI / Anthropic / Not Disclosed] | [Conversational AI] | [Source] | [URL] | [Confirmed / Inferred] |
 
-### Meeting Recording Infrastructure
+### Text-to-Speech / TTS
 | Vendor | Purpose | Source | Source URL | Confidence |
 |--------|---------|--------|------------|------------|
-| Recall.ai | Meeting bot & recording | Integration page | https://company.com/integrations | Confirmed |
+| [ElevenLabs / Play.ht / Not Disclosed] | [Voice synthesis] | [Source] | [URL] | [Confirmed / Inferred] |
+
+## Supporting Infrastructure
+
+### Telephony (if applicable)
+| Vendor | Purpose | Source | Source URL | Confidence |
+|--------|---------|--------|------------|------------|
+| [Twilio / Vonage / None] | [PSTN connectivity] | [Source] | [URL] | [Confirmed] |
+
+### Meeting Recording (if applicable)
+| Vendor | Purpose | Source | Source URL | Confidence |
+|--------|---------|--------|------------|------------|
+| [Recall.ai / Fireflies / None] | [Meeting capture] | [Source] | [URL] | [Confirmed] |
 
 ### Audio Processing
 | Vendor | Purpose | Source | Source URL | Confidence |
 |--------|---------|--------|------------|------------|
-| Krisp | Noise suppression | Tech blog | https://blog.company.com/tech-stack | Inferred |
-
-### NLP Services
-| Vendor | Purpose | Source | Source URL | Confidence |
-|--------|---------|--------|------------|------------|
-| [Vendor] | [Purpose] | [Source] | [URL] | [Confidence] |
+| [Krisp / Dolby.io / Unknown] | [Noise suppression] | [Source] | [URL] | [Inferred] |
 
 ## Key Findings
-- **Primary ASR Provider:** [Vendor name]
-- **Primary LLM Provider:** [Vendor name]
-- **Meeting Recording:** [In-house vs Third-party]
-- **Technology Strategy:** [Multi-vendor vs Single vendor]
-- **Competitive Intelligence:** [How their stack compares to competitors]
+
+### Real-Time Architecture
+**Transport:** [WebRTC / WebSockets / SIP / Unknown]
+**Framework:** [LiveKit / Pipecat / Custom / Not Disclosed]
+**Agentic Layer:** [Vapi / LiveKit Agents / Custom / None]
+**Confidence:** [High/Medium/Low - %]
+
+### Primary ASR Provider
+**Status:** [Confirmed / Not Disclosed / Unknown]
+**Probable Vendors:** [If not disclosed, list likely candidates based on product requirements]
+**Confidence:** [%]
+
+### Primary LLM Provider
+**Status:** [Confirmed / Not Disclosed / Unknown]
+**Probable Vendors:** [List]
+**Confidence:** [%]
+
+### Primary TTS Provider
+**Status:** [Confirmed / Not Disclosed / Unknown]
+**Probable Vendors:** [List]
+**Confidence:** [%]
+
+### Technology Strategy
+- **Multi-vendor vs Single vendor:** [Analysis]
+- **Build vs Buy:** [Proprietary infrastructure vs third-party frameworks]
+- **Real-time focus:** [Streaming / Batch / Hybrid]
+- **Competitive Moat:** [How tech stack creates differentiation]
+
+### Competitive Intelligence
+**Deliberate Non-Disclosure Analysis:**
+- Privacy policy accessible? [Yes/No - URL or 404]
+- Subprocessor list available? [Yes/No]
+- Technical documentation? [Yes/No]
+- Job postings with tech mentions? [Yes/No]
+
+**Strategic Interpretation:**
+- Why might they not disclose? [Competitive advantage / Early stage / Vendor negotiations / Custom models]
+- What does this signal? [Analysis]
+
+**Sales Opportunity:**
+- Is non-disclosure an opportunity? [Yes/No - Why]
+- Timing for outreach? [Analysis]
+- Key questions to ask? [List]
 
 ## Sources Consulted
-1. [Privacy Policy URL]
-2. [Subprocessor list URL]
-3. [API documentation URL]
-4. ...
+1. [Privacy Policy URL or "404 Not Found"]
+2. [Subprocessor List URL or "Not Available"]
+3. [Blog URL]
+4. [Careers URL]
+5. [Search results URLs]
+
+---
+
+**Report Completed:** [Date]
+**Analyst Confidence:** [High/Medium/Low (%)]
+**Sales Opportunity Rating:** [X/10]
 ```
 
-## Search Tips
+---
 
-### Where to Look
-- `/privacy`, `/subprocessors`, `/security`, `/trust`, `/gdpr`, `/dpa`
-- `trust.domain.com` or `security.domain.com` subdomains
-- `/api`, `/developers`, `/docs` for technical documentation
-- `/integrations`, `/partners` for technology partnerships
-- PDF documents (DPAs, vendor lists, security whitepapers)
+## Token Optimization Checklist
 
-### What to Search For
-- **ASR providers:** "Deepgram", "Gladia", "Assembly AI", "Azure Speech", "Google Speech-to-Text", "Rev.ai", "Whisper"
-- **LLM providers:** "OpenAI", "GPT", "Anthropic", "Claude", "Gemini", "Cohere", "Azure OpenAI"
-- **Meeting recorders:** "Recall.ai", "Fireflies", "Tactiq", "recording infrastructure"
-- **Keywords:** "speech-to-text", "transcription", "ASR", "language model", "LLM", "AI model", "natural language processing"
+Before executing research, verify:
 
-### Job Postings Intelligence
-- Search for ML Engineer, AI Engineer, Speech Engineer roles
-- Look for mentions of specific technologies in job descriptions
-- Check "About Us" or "Careers" pages for tech stack mentions
+- [ ] Has `/enrich-company` been run in this session?
+- [ ] Is company website content already available?
+- [ ] Are blog posts already fetched?
+- [ ] Is privacy policy already checked?
+- [ ] Are job postings already searched?
+- [ ] Is team/leadership already researched?
 
-## Optional: Use Python Modules
+**If YES to 3+ items:** Skip those searches, use cached data
 
-You can also leverage the SubprocessorDiscoverer from `src/subprocessors/discoverer.py` for programmatic discovery if needed.
+**Expected Token Usage:**
+- **Standalone:** ~15-18k tokens
+- **After enrichment:** ~8-10k tokens (45% savings)
 
-## Important Notes
-- **Focus exclusively on AI/speech technologies** - ignore general SaaS tools
-- Only report publicly available information
-- Distinguish between confirmed (explicitly stated) and inferred (detected via analysis)
-- If a dedicated subprocessor list exists, prioritize that as the primary source
-- Note if information seems outdated or incomplete
-- **Key for sales:** ASR provider is the most critical data point to identify
-- **CRITICAL: Always include source URLs** - every key insight must have a verifiable URL citation
+---
 
 ## After Completion
 
 Ask the user if they want to:
 1. Run `/sync-to-notion` to save the subprocessor data
-2. Enrich any of the discovered vendors with `/enrich-company`
+2. Continue with `/find-lookalikes` if running deep-dive

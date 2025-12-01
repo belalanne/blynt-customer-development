@@ -1,19 +1,54 @@
 # Blynt Customer Development - Go-to-Market Intelligence
 
 ## Project Overview
-This project automates go-to-market intelligence gathering for the **conversation intelligence and speech technology** market. It identifies lookalike companies, enriches company data, discovers AI/speech subprocessors (ASR providers, LLM vendors), and syncs findings to Notion for sales/marketing workflows.
+This project automates go-to-market intelligence gathering for companies building **real-time voice and speech products**. It identifies lookalike companies, enriches company data, discovers their real-time voice infrastructure (transport protocols, frameworks, agentic platforms, and speech stack), and syncs findings to Notion for sales/marketing workflows.
 
-## Target Market
-**Primary Focus:** Companies in the conversation intelligence, meeting transcription, and speech technology space.
+## Blynt's Product
+**Real-time Transcription API** with advanced features:
+- **Built-in Natural turn-taking** - Seamless conversation flow
+- **Large scale Keyword Boosting** - Custom vocabulary enhancement
+- **Run-time Contextualization** - Dynamic context adaptation
+- **Interruption Handling** - Robust handling of conversation overlaps
 
-Key characteristics of target companies:
-- B2B SaaS platforms
-- Meeting transcription/recording solutions
-- Conversation analytics tools
-- Sales coaching platforms using AI
-- Customer support quality assurance tools
-- Speech-to-text API providers
-- Voice AI applications
+## Target Market & ICP Classification
+
+### ICP #1: Speech/Dictation Products
+Companies that want to add **speech or dictation capabilities** to their product:
+- Healthcare documentation (medical dictation)
+- Legal transcription tools
+- Note-taking applications
+- Productivity apps with voice input
+- Accessibility features (voice control)
+
+**Key signals**: Building dictation features, medical/legal transcription, voice-to-text in apps
+
+### ICP #2: Meeting AI Assistants
+Companies building **meeting assistants with AI capabilities**:
+- Meeting transcription platforms (Otter.ai, Fireflies.ai, tldv, Grain)
+- Sales call intelligence (Gong, Chorus, Jiminny)
+- Customer support QA (Observe.AI, Mindtickle)
+- Collaboration tools with AI note-taking
+
+**Key signals**: Real-time meeting transcription, AI summaries, conversation analytics
+
+### ICP #3: Voice Agents Platforms/Products
+Companies building **voice agent platforms or voice-enabled products**:
+- AI phone assistants (Bland AI, Air.ai, Vapi)
+- Voice-enabled customer support
+- AI receptionists (Beside, Goodcall)
+- Conversational AI platforms
+- Voice bots for scheduling/ordering
+
+**Key signals**: Conversational AI, voice agents, AI phone systems, real-time voice interactions
+
+### ICP #4: Custom Speech/Voice Solutions
+Companies that want **fully customized speech/voice products**:
+- Enterprise voice infrastructure
+- Proprietary voice AI platforms
+- White-label voice solutions
+- Industry-specific voice applications (finance, healthcare, government)
+
+**Key signals**: Custom ASR models, proprietary voice tech, enterprise voice infrastructure
 
 ## Architecture
 
@@ -45,20 +80,32 @@ Finds similar companies based on various criteria:
 - Clustering for market segmentation
 
 #### 3. `/src/subprocessors`
-Discovers and maps out **AI/speech technology subprocessors** (NOT general infrastructure):
-- **Speech-to-Text / ASR providers** (Deepgram, Gladia, Assembly AI, Azure Speech, etc.)
-- **LLM providers** (OpenAI, Anthropic, Cohere, Google Gemini, etc.)
-- **Meeting recording infrastructure** (Recall.ai, Fireflies API, etc.)
-- **Audio processing tools** (noise suppression, enhancement)
-- **NLP services** (summarization, sentiment analysis)
+Discovers and maps out **real-time voice infrastructure and technology stack** (NOT general infrastructure):
 
-**Focus areas:**
+**Real-Time Infrastructure:**
+- **Transport Protocol**: WebRTC, WebSockets, SIP, PSTN
+- **Real-time Framework**: LiveKit, Pipecat, FastRTC, Daily, Agora, Twilio
+- **Agentic Framework**: Vapi, LiveKit Agents, Pipecat Flow, Retell, Vocode
+
+**Speech Stack:**
+- **ASR providers** (Deepgram, Gladia, Assembly AI, Azure Speech, Google Speech, Whisper)
+- **LLM providers** (OpenAI, Anthropic, Cohere, Google Gemini, Azure OpenAI)
+- **TTS providers** (ElevenLabs, Play.ht, Azure TTS, Google TTS, OpenAI TTS, Deepgram Aura)
+
+**Supporting Infrastructure:**
+- **Meeting recording** (Recall.ai, Fireflies API, Tactiq)
+- **Audio processing** (Krisp, Dolby.io, noise suppression)
+- **Telephony** (Twilio Voice, Vonage, Bandwidth, SignalWire)
+
+**Research Focus Areas:**
 - Privacy policies and subprocessor lists
-- Technical documentation (API docs, developer docs)
-- Job postings for AI/ML engineer roles
-- Technology partnerships and announcements
+- Technical documentation (API docs, developer docs, SDKs)
+- Job postings mentioning specific tech (WebRTC engineer, LiveKit, Pipecat, etc.)
+- GitHub repositories and open-source projects
+- Technology partnerships and vendor announcements
+- Blog posts about technical architecture
 
-**IGNORE:** General hosting, CDN, analytics, marketing tools, payment processors
+**IGNORE:** General hosting, CDN, analytics, marketing tools, payment processors, databases
 
 #### 4. `/src/notion`
 Integrates findings into Notion databases:
@@ -158,11 +205,31 @@ Use these commands for common workflows:
 - Cite: company websites, LinkedIn pages, Crunchbase profiles, job postings, news articles
 - Distinguish between confirmed facts and inferred insights
 
-### Subprocessor Discovery Focus
-- **ONLY** focus on AI/speech technologies
-- Primary goal: Identify ASR provider (Deepgram, Gladia, Assembly AI, etc.)
-- Secondary: LLM provider (OpenAI, Anthropic, etc.)
-- Ignore: Hosting, CDN, general analytics, marketing tools
+### Real-Time Voice Infrastructure Discovery
+
+**Priority 1: Transport & Framework**
+- Identify transport protocol: WebRTC, WebSockets, SIP
+- Identify real-time framework: LiveKit, Pipecat, Daily, Agora, Twilio
+- Identify agentic framework: Vapi, LiveKit Agents, Pipecat Flow, Retell, Vocode
+
+**Priority 2: Speech Stack**
+- ASR provider: Deepgram, Gladia, Assembly AI, Azure Speech, Whisper
+- LLM provider: OpenAI, Anthropic, Google Gemini, Azure OpenAI
+- TTS provider: ElevenLabs, Play.ht, Deepgram Aura, Azure TTS
+
+**Priority 3: Supporting Infrastructure**
+- Telephony: Twilio, Vonage, Bandwidth, SignalWire
+- Meeting recording: Recall.ai, Fireflies API
+- Audio processing: Krisp, Dolby.io
+
+**Key Research Indicators:**
+- Job postings: "WebRTC engineer", "LiveKit", "Pipecat", "Voice AI engineer"
+- Technical blog posts: Architecture diagrams, tech stack discussions
+- GitHub repos: Open-source integrations, SDKs used
+- API documentation: WebSocket endpoints, real-time APIs
+- Privacy policies: List of AI/speech subprocessors
+
+**Ignore:** Hosting (AWS, GCP), CDN (Cloudflare), analytics (Google Analytics), marketing tools, payment processors, databases
 
 ### Data Quality
 - Prefer official sources (privacy policies, subprocessor lists, API docs)

@@ -384,8 +384,52 @@ Work through Q0 → Q1 → Q2 → Q3 → Q4 → Q5 sequentially:
 
 ---
 
+## Step 4: Save ICP to Notion (Token-Optimized)
+
+After completing your analysis, save the ICP classification to Notion using the **Python script** instead of MCP tools to save ~8-12k tokens.
+
+### Option A: Update existing company
+```bash
+# First, check if company exists
+.venv/bin/python3 scripts/notion_contact_ops.py get-company --domain "company.com"
+
+# If found, update ICP
+.venv/bin/python3 scripts/notion_contact_ops.py update-icp \
+  --company-id "PAGE_ID_FROM_ABOVE" \
+  --icp "3"
+```
+
+### Option B: Create or update company with ICP
+```bash
+.venv/bin/python3 scripts/notion_contact_ops.py create-or-update-company \
+  --name "Company Name" \
+  --website "https://company.com" \
+  --icp "3" \
+  --vertical "Voice AI" \
+  --product-desc "Brief 5-word description"
+```
+
+**Response Format:**
+```json
+{
+  "success": true,
+  "page_id": "xxx-xxx-xxx",
+  "icp": "3",
+  "url": "https://notion.so/xxxxx"
+}
+```
+
+After saving to Notion, confirm:
+```
+✅ ICP Classification saved to Notion
+**Company:** [Name]
+**ICP:** [1/2/3/4/N/A]
+**Notion Page:** [URL from script response]
+```
+
 ## Important Notes
 
+- **Token Savings:** Using Python script saves ~8-12k tokens per ICP update (83% reduction)
 - **Use `/enrich-company`** if you need more data about the company before mapping
 - **Be conservative** - if unclear between 2 ICPs, explain both and mark as "Medium/Low confidence"
 - **Focus on CURRENT state**, not potential future

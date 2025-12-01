@@ -1,0 +1,37 @@
+{
+  "companies": [
+    {
+      "name": "Example Company 1",
+      "website": "https://example1.com",
+      "linkedin": "https://www.linkedin.com/company/example1",
+      "vertical": "Voice AI",
+      "icp": "3",
+      "product_description": "AI-powered voice assistant platform",
+      "asr_providers": ["Deepgram", "Assembly AI"],
+      "ai_engineers": 15,
+      "main_office_country": "United States"
+    },
+    {
+      "name": "Example Company 2",
+      "website": "https://example2.com",
+      "linkedin": "https://www.linkedin.com/company/example2",
+      "vertical": "Sales Intelligence",
+      "icp": "2",
+      "product_description": "Meeting transcription and AI insights",
+      "asr_providers": ["Gladia"],
+      "ai_engineers": 8,
+      "main_office_country": "France"
+    },
+    {
+      "name": "Example Company 3",
+      "website": "https://example3.com",
+      "linkedin": "https://www.linkedin.com/company/example3",
+      "vertical": "Customer Support",
+      "icp": "2",
+      "product_description": "Call center quality assurance AI",
+      "asr_providers": ["Microsoft Azure"],
+      "ai_engineers": 20,
+      "main_office_country": "United Kingdom"
+    }
+  ]
+}

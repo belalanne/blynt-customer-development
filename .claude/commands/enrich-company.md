@@ -55,6 +55,7 @@ Compile a detailed company profile with:
    - Main competitors
    - Recent news or announcements
    - Growth indicators (hiring, funding, expansion)
+   - **ICP Classification** (see ICP definitions below)
 
 3. **Technology Stack**
    - Website technologies (frontend, backend, hosting)
@@ -78,6 +79,53 @@ Compile a detailed company profile with:
    - Potential use cases for your solution
    - Best approach/entry point
    - Relevant news hooks for outreach
+
+## ICP Classification Guide
+
+Classify companies into one of these ICPs based on their product/use case:
+
+### ICP #1: Speech/Dictation Products
+Companies building products with **speech or dictation capabilities**:
+- Healthcare documentation (medical dictation)
+- Legal transcription tools
+- Note-taking applications
+- Productivity apps with voice input
+- Accessibility features (voice control)
+
+**Key signals**: Dictation features, medical/legal transcription, voice-to-text in apps
+
+### ICP #2: Meeting AI Assistants
+Companies building **meeting assistants with AI capabilities**:
+- Meeting transcription platforms (Otter.ai, Fireflies.ai, tldv, Grain)
+- Sales call intelligence (Gong, Chorus, Jiminny)
+- Customer support QA (Observe.AI, Mindtickle)
+- Collaboration tools with AI note-taking
+
+**Key signals**: Real-time meeting transcription, AI summaries, conversation analytics
+
+### ICP #3: Voice Agents Platforms/Products
+Companies building **voice agent platforms or voice-enabled products**:
+- AI phone assistants (Bland AI, Air.ai, Vapi)
+- Voice-enabled customer support
+- AI receptionists (Beside, Goodcall)
+- Conversational AI platforms
+- Voice bots for scheduling/ordering
+
+**Key signals**: Conversational AI, voice agents, AI phone systems, real-time voice interactions
+
+### ICP #4: Custom Speech/Voice Solutions
+Companies building **fully customized speech/voice products**:
+- Enterprise voice infrastructure
+- Proprietary voice AI platforms
+- White-label voice solutions
+- Industry-specific voice applications (finance, healthcare, government)
+
+**Key signals**: Custom ASR models, proprietary voice tech, enterprise voice infrastructure
+
+### ICP N/A: Not a Fit
+- Companies outside the voice/speech technology space
+- General AI/ML companies without voice focus
+- Hardware-only companies (unless building voice-enabled hardware)
 
 ## Output Format
 
@@ -110,6 +158,11 @@ Compile a detailed company profile with:
 
 ### Value Proposition
 [How they position themselves]
+
+### ICP Classification
+**ICP:** [1 / 2 / 3 / 4 / N/A]
+**Category:** [Speech/Dictation / Meeting AI / Voice Agents / Custom / Not a Fit]
+**Reasoning:** [Brief explanation of why this ICP classification]
 
 ### Competitors
 - [Competitor 1]

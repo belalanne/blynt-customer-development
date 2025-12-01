@@ -7,16 +7,18 @@ argument-hint: <contact_name or company_name>
 
 Discover email addresses for existing contacts in the People database using multiple methods: web search, Hunter.io, and Apollo.io.
 
+**Token Optimization:** Use the Python script for all Notion operations (search, query, update) to save ~10-15k tokens per operation.
+
 ## Input
 {{arg}}
 
 ## Task Instructions
 
 This command enriches existing contacts with email addresses:
-1. **Search for contacts** in the People database by name or company
+1. **Search for contacts** - Use Python script instead of MCP tools (~2k tokens vs 12k)
 2. **Extract contact details** - Name, role, company, LinkedIn
-3. **Discover emails** using web search, Hunter.io, Apollo.io
-4. **Update contact records** with found emails and source
+3. **Discover emails** - Web search, Hunter.io, Apollo.io
+4. **Update contact records** - Use Python script to save emails (~3k tokens vs 10k)
 
 ## Usage Modes
 
@@ -40,23 +42,48 @@ This command enriches existing contacts with email addresses:
 
 ## Workflow Steps
 
-### 1. Find Contacts in Notion
-```
-- If input is a person name: Search People database for that contact
-- If input is a company: Find all contacts at that company
-- If --missing-emails: Find all contacts where Email field is empty
-- Display contacts found and ask for confirmation before processing
+### 1. Find Contacts in Notion (Using Python Script)
+
+**Option A: Search by name**
+```bash
+.venv/bin/python3 scripts/notion_contact_ops.py search-contacts --name "Paul Berloty"
 ```
 
+**Option B: Get all contacts without emails**
+```bash
+.venv/bin/python3 scripts/notion_contact_ops.py get-contacts-without-email --limit 50
+```
+
+**Response Format:**
+```json
+{
+  "found": true,
+  "count": 2,
+  "contacts": [
+    {
+      "page_id": "xxx-xxx-xxx",
+      "name": "Paul Berloty",
+      "email": null,
+      "role": "CEO",
+      "linkedin": "https://www.linkedin.com/in/paul-berloty/",
+      "url": "https://notion.so/xxxxx"
+    }
+  ]
+}
+```
+
+- Display contacts found and ask for confirmation before processing
+- Skip contacts that already have emails
+
 ### 2. Extract Contact Details
-For each contact:
+For each contact from the script response:
 ```
 - Name (split into first/last)
 - Current email (if any)
-- Company name and domain
+- Company name and domain (from Company relation)
 - Role/title
 - LinkedIn URL
-- Contact page URL
+- Contact page ID and URL
 ```
 
 ### 3. Email Discovery Process
@@ -184,16 +211,35 @@ Response:
 }
 ```
 
-### 4. Update Contact in Notion
+### 4. Update Contact in Notion (Using Python Script)
+
+Use the Python script to update the contact's email:
+
+```bash
+.venv/bin/python3 scripts/notion_contact_ops.py update-email \
+  --contact-id "PAGE_ID_FROM_STEP_1" \
+  --email "paul@modjo.ai" \
+  --source "Hunter.io (95% confidence, verified)"
 ```
-Update the contact page with:
+
+**Response Format:**
+```json
+{
+  "success": true,
+  "page_id": "xxx-xxx-xxx",
+  "email": "paul@modjo.ai",
+  "source": "Hunter.io (95% confidence, verified)",
+  "url": "https://notion.so/xxxxx"
+}
+```
+
+**Token Savings:** ~7k tokens per update (70% reduction) compared to MCP tools
+
+The script automatically updates:
 - Email address
-- Email source (Web Search, Hunter, Apollo, Pattern-Guessed)
-- Confidence score (if available)
-- Verification status
-- Date found
-- Optional: Add to "Notes / Bio" field with source details
-```
+- Source information (stored for tracking)
+
+For additional details (verification status, confidence score, date found), you can optionally use Notion MCP to append to "Notes / Bio" field.
 
 ## Output Format
 

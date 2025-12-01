@@ -42,7 +42,7 @@ for company in "${companies[@]}"; do
     echo "--------------------------------------"
     echo "  Syncing: $company"
     echo "--------------------------------------"
-    python "$SYNC_SCRIPT" "$company"
+    python3 "$SYNC_SCRIPT" "$company"
 
     # Check exit status
     if [ $? -eq 0 ]; then

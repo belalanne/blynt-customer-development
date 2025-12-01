@@ -2,7 +2,7 @@
 description: Save company research findings to Notion database, checking for duplicates by URL and updating all properties
 ---
 
-You are a Notion integration agent that saves company research data to a Notion database. You have access to Notion MCP tools to interact with the database.
+You are a Notion integration agent that saves company research data to a Notion database. Use the **token-optimized Python script** instead of MCP tools to save ~15-20k tokens per operation.
 
 **Company:** {{arg1}}
 **Data Type:** {{arg2}} (default: all - options: company, lookalikes, subprocessors, all)
@@ -11,14 +11,14 @@ You are a Notion integration agent that saves company research data to a Notion 
 
 When given company research data, you need to:
 
-1. **Check for Existing Company**
-   - Search the Notion database for an existing page with the same website URL
-   - Use the website URL as the unique identifier/key
-   - Database ID: `2861bdff7e998000a14edb0bf56a75bf`
+1. **Extract Company Data**
+   - Parse the company name, website, LinkedIn, vertical, product description, ASR provider, AI engineers, and country
+   - Prepare the data in the format required by the Python script
 
-2. **Create or Update Company Page**
-   - If company exists: Update the existing page
-   - If company doesn't exist: Create a new page
+2. **Save to Notion Using Python Script**
+   - Use `.venv/bin/python3 scripts/notion_contact_ops.py create-or-update-company` command
+   - The script automatically checks for duplicates by website URL
+   - The script creates a new page if not found, or updates existing page
 
 3. **Update These Properties**
 
@@ -34,20 +34,19 @@ When given company research data, you need to:
    - `Website` - Company website URL (URL field)
    - `Linkedin Link` - LinkedIn company page URL (URL field)
 
-4. **Add Research Findings to Page Content**
-   - Add the detailed company enrichment report as page content
+4. **Add Research Findings to Page Content (Use MCP for Content Only)**
+   - After saving properties with the Python script, use Notion MCP to append page content
    - Include sections: Executive Summary, Firmographics, Business Overview, Technology Stack, Leadership, Sales Intelligence
    - Add the subprocessor analysis if available
    - Format nicely with headers and sections
 
-## Process Flow
+## Process Flow (Token-Optimized)
 
 ```
 Step 1: Extract company data from the research
-Step 2: Use Notion MCP to search database by website URL
-Step 3: If found -> Get page ID and update properties
-        If not found -> Create new page with all properties
-Step 4: Append/update page content with full research report
+Step 2: Run Python script to create/update company properties (~2k tokens vs 15k)
+Step 3: Parse JSON response to get page_id
+Step 4: Use Notion MCP to append page content (only if needed)
 Step 5: Confirm success and provide Notion page link
 ```
 
@@ -95,29 +94,65 @@ After saving to Notion, provide:
 - Subprocessor analysis (if available)
 ```
 
+## Script Usage Examples
+
+### Example 1: Basic company sync
+```bash
+.venv/bin/python3 scripts/notion_contact_ops.py create-or-update-company \
+  --name "Krisp" \
+  --website "https://krisp.ai" \
+  --linkedin "https://www.linkedin.com/company/krisp-technologies" \
+  --vertical "Voice AI" \
+  --icp "3" \
+  --product-desc "AI noise cancellation for calls" \
+  --ai-engineers 25 \
+  --country "United States"
+```
+
+### Example 2: With ASR providers
+```bash
+.venv/bin/python3 scripts/notion_contact_ops.py create-or-update-company \
+  --name "LiveKit" \
+  --website "https://livekit.io" \
+  --linkedin "https://www.linkedin.com/company/livekitco" \
+  --vertical "Infrastructure" \
+  --icp "3" \
+  --product-desc "Real-time video infrastructure platform" \
+  --asr-providers "Deepgram,Assembly AI,Speechmatics" \
+  --ai-engineers 18 \
+  --country "United States"
+```
+
+**Response Format:**
+```json
+{
+  "success": true,
+  "page_id": "xxx-xxx-xxx",
+  "url": "https://notion.so/xxxxx",
+  "action": "created",
+  "company_name": "Krisp"
+}
+```
+
 ## Important Notes
 
-- **Database data source ID:** `collection://20a1bdff-7e99-81b9-badb-000bc5d45f78` (use this as parent when creating pages)
-- Always use the Website URL as the unique key to check for duplicates
-- Only set `Status / Engagement` to "Ice Box" if it's currently empty/null
+- **Token Savings:** This approach saves ~15-20k tokens per sync operation (87% reduction)
+- Always use the Website URL as the unique key - the script automatically checks for duplicates
+- Only set `Status / Engagement` to "Ice Box" if creating new (script preserves existing status)
 - ICP should always be set to "3" (the select option, not number)
-- `ASR provider` is a multi_select field - wrap values in JSON array format
+- `ASR provider` accepts comma-separated list: "Deepgram,Assembly AI,Gladia"
 - `Vertical` must be one of the existing select options from the database
-- If data is missing for a field, use "Unknown" or leave blank as appropriate
-- Handle Notion API errors gracefully and report them clearly
-- Preserve any existing data in fields not being updated
+- If data is missing for a field, omit the parameter or use "Unknown"
+- Handle script errors gracefully and report them clearly
+- The script automatically preserves any existing data in fields not being updated
 
-## Notion MCP Tools Available
+## Notion MCP Tools (Use ONLY for Page Content)
 
-You have access to these Notion MCP tools:
-- Search pages in database
-- Create new pages
-- Update page properties
-- Append content to pages
-- Query databases
+After using the Python script to update properties, you can use Notion MCP to:
+- Append content blocks to pages (research reports, analysis)
+- Format content with headers and sections
 
-Use these tools to accomplish the task systematically.
-
-## Optional: Use Python Modules
-
-You can also leverage the NotionClient from `src/notion/client.py` for programmatic syncing if needed.
+**Do NOT use MCP tools for:**
+- Searching for companies (use Python script `get-company`)
+- Creating/updating properties (use Python script `create-or-update-company`)
+- Querying databases (use Python script methods)
