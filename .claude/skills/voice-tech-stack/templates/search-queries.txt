@@ -1,0 +1,69 @@
+# Voice Tech Stack Search Query Templates
+# Replace {domain} and {company} with actual values
+
+## Privacy Policy / Subprocessors
+site:{domain} privacy policy subprocessors
+site:{domain} legal subprocessors
+site:{domain} security subprocessors
+"{company}" subprocessor list
+"{company}" data processing agreement
+
+## Job Postings - ASR/STT
+site:{domain} careers "speech recognition"
+site:{domain} jobs "ASR"
+"{company}" hiring "speech engineer"
+"{company}" jobs "transcription"
+linkedin.com/jobs "{company}" "speech recognition"
+
+## Job Postings - Real-time
+site:{domain} careers "WebRTC"
+"{company}" hiring "real-time audio"
+"{company}" jobs "voice engineer"
+"{company}" hiring "LiveKit" OR "Pipecat" OR "Twilio"
+linkedin.com/jobs "{company}" "voice AI"
+
+## Job Postings - TTS
+site:{domain} careers "text-to-speech"
+"{company}" hiring "TTS"
+"{company}" jobs "voice synthesis"
+
+## Technical Documentation
+site:{domain} docs api transcription
+site:{domain} developers voice
+site:{domain} api reference audio
+"{company}" documentation websocket audio
+
+## GitHub / Open Source
+site:github.com "{company}" voice
+site:github.com "{company}" speech
+"{company}" github sdk
+"{company}" npm package voice
+"{company}" pypi package speech
+
+## Blog / Engineering Posts
+site:{domain} blog voice
+site:{domain} blog architecture audio
+site:{domain} engineering real-time
+"{company}" blog "how we built" voice
+
+## Provider-Specific Searches
+"{company}" Deepgram
+"{company}" "Assembly AI"
+"{company}" Gladia
+"{company}" ElevenLabs
+"{company}" "Play.ht"
+"{company}" LiveKit
+"{company}" Pipecat
+"{company}" Twilio Voice
+"{company}" Agora
+
+## News / Announcements
+"{company}" announces voice
+"{company}" launches transcription
+"{company}" partners Deepgram
+"{company}" integrates ElevenLabs
+
+## Crunchbase / Funding
+site:crunchbase.com "{company}"
+"{company}" series funding voice AI
+"{company}" investors speech

@@ -1,0 +1,130 @@
+{
+  "name": "Sales Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a Sales Research Agent for Blynt, a real-time transcription API company.\n\nYour job is to:\n1. Research companies using the Exa search tool\n2. Classify them into ICP categories (1-4 or N/A)\n3. Find their voice/speech technology stack\n4. Save promising leads to Notion\n\nICP Categories:\n- ICP 1: Speech/Dictation Products (medical dictation, note apps)\n- ICP 2: Meeting AI Assistants (Otter, Fireflies, Gong)\n- ICP 3: Voice Agents Platforms (Vapi, Bland AI, Retell)\n- ICP 4: Custom Speech/Voice Solutions (enterprise)\n- N/A: Not a fit (no voice/speech use case)\n\nWhen researching a company:\n1. Use exa_search to find information about the company\n2. Look for ASR/TTS/LLM providers they use\n3. Classify the ICP based on their product\n4. Summarize findings concisely\n\nBe factual and cite sources when possible."
+        }
+      },
+      "id": "chat-trigger-1",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 200],
+      "webhookId": "sales-agent-chat"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {}
+      },
+      "id": "openai-model-1",
+      "name": "OpenAI GPT-4o-mini",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [400, 400],
+      "credentials": {
+        "openAiApi": {
+          "id": "T8Y2EXkhqO9SLwI7",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {}
+      },
+      "id": "agent-1",
+      "name": "Sales Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [400, 200]
+    },
+    {
+      "parameters": {
+        "name": "exa_search",
+        "description": "Search for company information using Exa AI. Use this to research companies, find their products, technology stack, and news.",
+        "method": "POST",
+        "url": "https://api.exa.ai/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {"name": "x-api-key", "value": "c627e673-f285-41c9-8097-a7d9c9b84281"},
+            {"name": "Content-Type", "value": "application/json"}
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"query\": \"{query}\", \"numResults\": 10, \"useAutoprompt\": true, \"contents\": {\"text\": {\"maxCharacters\": 2000}}}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "query",
+              "description": "The search query about a company or topic"
+            }
+          ]
+        }
+      },
+      "id": "exa-tool-1",
+      "name": "Exa Search Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [200, 400]
+    },
+    {
+      "parameters": {
+        "name": "exa_find_similar",
+        "description": "Find companies similar to a given URL. Use this to find lookalike companies and competitors.",
+        "method": "POST",
+        "url": "https://api.exa.ai/findSimilar",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {"name": "x-api-key", "value": "c627e673-f285-41c9-8097-a7d9c9b84281"},
+            {"name": "Content-Type", "value": "application/json"}
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"url\": \"{url}\", \"numResults\": 10, \"contents\": {\"text\": {\"maxCharacters\": 1000}}}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "url",
+              "description": "The URL of a company website to find similar companies"
+            }
+          ]
+        }
+      },
+      "id": "exa-similar-tool-1",
+      "name": "Exa Find Similar Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [600, 400]
+    }
+  ],
+  "connections": {
+    "Chat Trigger": {
+      "main": [[{"node": "Sales Agent", "type": "main", "index": 0}]]
+    },
+    "OpenAI GPT-4o-mini": {
+      "ai_languageModel": [[{"node": "Sales Agent", "type": "ai_languageModel", "index": 0}]]
+    },
+    "Exa Search Tool": {
+      "ai_tool": [[{"node": "Sales Agent", "type": "ai_tool", "index": 0}]]
+    },
+    "Exa Find Similar Tool": {
+      "ai_tool": [[{"node": "Sales Agent", "type": "ai_tool", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

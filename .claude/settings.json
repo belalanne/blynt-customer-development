@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__sales__*",
+      "Task",
+      "Read",
+      "WebSearch",
+      "WebFetch",
+      "Bash(curl:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "prompt",
+        "path": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/audit-tool-use.md",
+        "matchTools": [
+          "mcp__sales__notion_save_company",
+          "mcp__sales__notion_update_company",
+          "mcp__sales__n8n_enrich_company",
+          "mcp__sales__n8n_enrich_person"
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "prompt",
+        "path": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/validate-notion-input.md",
+        "matchTools": ["mcp__sales__notion_save_company"]
+      },
+      {
+        "type": "prompt",
+        "path": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/block-dangerous-commands.md",
+        "matchTools": ["Bash"]
+      }
+    ]
+  },
+  "model": "sonnet",
+  "preferences": {
+    "autoApproveTools": true,
+    "verboseOutput": false
+  }
+}
