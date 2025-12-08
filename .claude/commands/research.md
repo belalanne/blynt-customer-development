@@ -208,15 +208,43 @@ Score 0-100 based on:
 
 ## Notion CRM Integration
 
-When saving to Notion, set these fields:
+### Step 1: Check for Duplicates FIRST
 
-### Companies Database
+**IMPORTANT**: Before creating a new page, ALWAYS check if company exists:
+
+```bash
+# Query Notion by Website URL
+curl -s -X POST "https://api.notion.com/v1/databases/{DATABASE_ID}/query" \
+  -H "Authorization: Bearer $NOTION_API_KEY" \
+  -H "Notion-Version: 2022-06-28" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "filter": {
+      "property": "Website",
+      "url": {"contains": "<domain>"}
+    }
+  }'
+```
+
+**If company exists:**
+- Show: "⚠️ Company already in Notion: [Name](link)"
+- Show existing data: Status, ICP, Contacts, Last Interaction
+- Ask: "Update existing page?" (Yes/No)
+- If Yes → PATCH existing page
+- If No → Skip save
+
+**If company is new:**
+- Create new page with POST
+
+### Step 2: Set Fields
+
+#### Companies Database
 - `Status / Engagement`: "To Contact" (for new leads)
 - `ICP`: From classification
 - `Lead Score`: Calculated score (if field exists)
 - All other standard fields
 
-### People Database
+#### People Database
 - `Contact_Name`: Key contact name
 - `Role`: Their title
 - `Email`: Found email
